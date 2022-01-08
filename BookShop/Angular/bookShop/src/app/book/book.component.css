@@ -1,0 +1,25 @@
+.card {
+    position: relative;
+    padding: 20px;
+    margin: 50px;
+    width: 25%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-text{
+    font-size: smaller;
+}
+
+.card img {
+    align-self: center;
+    width: 200px;
+    height: 250px;
+    margin-bottom: 15px;
+    transition: 0.3s ease-in-out;
+}
+
+.card img:hover {
+    transition: 0.3s ease-in-out;
+    transform: scale(1.1);
+}
