@@ -3,21 +3,25 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BookComponent } from './book/book.component';
+import { BookComponent } from './component/book/book.component';
 import { HttpClientModule } from '@angular/common/http';
-import { SharedService } from './shared.service';
+import { ApiService } from './service/api.service';
+import { HeaderComponent } from './component/header/header.component';
+import { CartComponent } from './component/cart/cart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BookComponent
+    BookComponent,
+    HeaderComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [SharedService, HttpClientModule],
+  providers: [ApiService, HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

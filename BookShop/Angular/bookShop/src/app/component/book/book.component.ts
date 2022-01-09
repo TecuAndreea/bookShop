@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedService } from 'src/app/shared.service';
+import { ApiService } from 'src/app/service/api.service';
 
 @Component({
   selector: 'app-book',
@@ -10,7 +10,7 @@ export class BookComponent implements OnInit {
 
   Books: any = [];
 
-  constructor(private service: SharedService) { }
+  constructor(private service: ApiService) { }
 
   ngOnInit(): void {
     this.refreshDepList();
