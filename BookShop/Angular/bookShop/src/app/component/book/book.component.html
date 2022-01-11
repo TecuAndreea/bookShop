@@ -7,7 +7,7 @@
                 <p class="card-subtitle mb-2 text-muted">{{item.author.name}}</p>
                 <p class="card-text">{{item.description}}</p>
                 <p class="mt-auto"><strong>Price:</strong> ${{item.price}}</p>
-                <button id="addTocart" class="btn btn-primary align-self-end">Add to cart</button>
+                <button id="addTocart" (click)=addtocart(item) class="btn btn-primary align-self-end">Add to cart</button>
             </div>
         </div>
     </ng-container>

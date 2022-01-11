@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/service/api.service';
+import { CartService } from 'src/app/service/cart.service';
 
 @Component({
   selector: 'app-book',
@@ -8,9 +9,9 @@ import { ApiService } from 'src/app/service/api.service';
 })
 export class BookComponent implements OnInit {
 
-  Books: any = [];
+  public Books: any;
 
-  constructor(private service: ApiService) { }
+  constructor(private service: ApiService, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.refreshDepList();
@@ -19,7 +20,13 @@ export class BookComponent implements OnInit {
   refreshDepList() {
     this.service.getBooks().subscribe(data => {
       this.Books = data;
+      this.Books.forEach((a:any) => {
+        Object.assign(a,{quantity:1,total:a.price});
+      });
     });
   }
 
+  addtocart(item: any){
+    this.cartService.addtoCart(item);
+  }
 }
