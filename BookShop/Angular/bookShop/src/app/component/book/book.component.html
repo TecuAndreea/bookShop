@@ -1,5 +1,22 @@
+<div class="card-top container-fluid">
+    <div class="container d-flex">
+        <div class="item">
+            <a (click)="filter('')">
+                <h6>All books</h6>
+            </a>
+        </div>
+        <ng-container *ngFor="let item of categories">
+            <div class="item">
+                <a (click)="filter(item.name)">
+                    <h6>{{item.name}}</h6>
+                </a>
+            </div>
+        </ng-container>
+    </div>
+</div>
+
 <div class="row row-cols-1 row-cols-md-2 g-4">
-    <ng-container *ngFor="let item of Books">
+    <ng-container *ngFor="let item of filteredBooks">
         <div class="card shadow p-3 mb-5 bg-white rounded">
             <img class="card-img-top" src="{{item.photoUrl}}" alt="Not found">
             <div class="card-body flex-column d-flex">
@@ -7,7 +24,8 @@
                 <p class="card-subtitle mb-2 text-muted">{{item.author.name}}</p>
                 <p class="card-text">{{item.description}}</p>
                 <p class="mt-auto"><strong>Price:</strong> ${{item.price}}</p>
-                <button id="addTocart" (click)=addtocart(item) class="btn btn-primary align-self-end">Add to cart</button>
+                <button id="addTocart" (click)=addtocart(item) class="btn btn-primary align-self-end">Add to
+                    cart</button>
             </div>
         </div>
     </ng-container>

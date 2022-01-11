@@ -17,4 +17,18 @@ export class ApiService {
       return res;
     }));
   }
+
+  getCategories(): Observable<any[]> {
+    return this.http.get<any>(this.APIUrl + '/category')
+    .pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
+  getAuthors(): Observable<any[]> {
+    return this.http.get<any>(this.APIUrl + '/author')
+    .pipe(map((res:any)=>{
+      return res;
+    }));
+  }
 }

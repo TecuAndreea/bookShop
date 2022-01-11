@@ -9,7 +9,10 @@ import { CartService } from 'src/app/service/cart.service';
 })
 export class BookComponent implements OnInit {
 
-  public Books: any;
+  public books: any;
+  public filteredBooks: any;
+  public categories: any;
+  public authors: any;
 
   constructor(private service: ApiService, private cartService: CartService) { }
 
@@ -19,14 +22,29 @@ export class BookComponent implements OnInit {
 
   refreshDepList() {
     this.service.getBooks().subscribe(data => {
-      this.Books = data;
-      this.Books.forEach((a:any) => {
-        Object.assign(a,{quantity:1,total:a.price});
-      });
+      this.books = data;
+      this.filteredBooks = data;
+    });
+
+    this.service.getCategories().subscribe(data => {
+      this.categories = data;
+    });
+
+    this.service.getAuthors().subscribe(data => {
+      this.authors = data;
     });
   }
 
   addtocart(item: any){
     this.cartService.addtoCart(item);
+  }
+
+  filter(category:string){
+    this.filteredBooks = this.books
+    .filter((a:any)=>{
+      if(a.category.name == category || category==''){
+        return a;
+      }
+    })
   }
 }

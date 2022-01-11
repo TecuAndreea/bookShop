@@ -8,13 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './service/api.service';
 import { HeaderComponent } from './component/header/header.component';
 import { CartComponent } from './component/cart/cart.component';
+import { OrderDetailFormComponent } from './component/order-detail-form/order-detail-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BookComponent,
     HeaderComponent,
-    CartComponent
+    CartComponent,
+    OrderDetailFormComponent
   ],
   imports: [
     BrowserModule,
