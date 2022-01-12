@@ -9,6 +9,7 @@ import { ApiService } from './service/api.service';
 import { HeaderComponent } from './component/header/header.component';
 import { CartComponent } from './component/cart/cart.component';
 import { OrderDetailFormComponent } from './component/order-detail-form/order-detail-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { OrderDetailFormComponent } from './component/order-detail-form/order-de
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [ApiService, HttpClientModule],
   bootstrap: [AppComponent]

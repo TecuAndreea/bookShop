@@ -1,7 +1,55 @@
-<form>
-    <div class="form-group">
-        <label for="fullName">Full name</label>
-        <input required name="fullName">
-    </div>
-    <button class="btn btn-primary">Place order</button>
-</form>
+<div class="container">
+    <form [formGroup]="orderDetails" (ngSubmit)="onSubmit()">
+        <h2>Personal details</h2>
+        <div class="form-input">
+            <label for="customer-full-name">Full name: </label>
+            <input id="customer-full-name" type="text" formControlName="customerFullName">
+        </div>
+
+        <div class="form-input">
+            <label for="customer-email">Email: </label>
+            <input id="customer-email" type="text" formControlName="customerEmail">
+        </div>
+
+        <div class="form-input">
+            <label for="customer-phone-number">Phone number: </label>
+            <input id="customer-phone-number" type="text" formControlName="customerPhoneNumber">
+        </div>
+
+        <div formGroupName="customerAddress">
+            <h2>Address</h2>
+
+            <div class="form-input">
+                <label for="street">Street: </label>
+                <input id="street" type="text" formControlName="street">
+            </div>
+
+            <div class="form-input">
+                <label for="city">City: </label>
+                <input id="city" type="text" formControlName="city">
+            </div>
+
+            <div class="form-input">
+                <label for="state">State: </label>
+                <input id="state" type="text" formControlName="state">
+            </div>
+
+            <div class="form-input">
+                <label for="zip">Zip Code: </label>
+                <input id="zip" type="text" formControlName="zip">
+            </div>
+        </div>
+
+        <div class="form-input">
+            <label for="placement-date">Placement date: </label>
+            <input id="placement-date" type="text" formControlName="placementDate">
+        </div>
+
+        <div class="form-input">
+            <label for="total">Total: </label>
+            <input id="total" type="text" formControlName="total">
+        </div>
+
+        <button class="btn btn-primary" [disabled]="!orderDetails.valid">Place order</button>
+    </form>
+</div>
