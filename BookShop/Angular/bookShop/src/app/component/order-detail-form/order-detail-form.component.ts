@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/service/api.service';
 import { CartService } from 'src/app/service/cart.service';
@@ -12,14 +12,14 @@ import { CartService } from 'src/app/service/cart.service';
 export class OrderDetailFormComponent implements OnInit {
 
   orderDetails = new FormGroup({
-    customerFullName: new FormControl(''),
-    customerEmail: new FormControl(''),
-    customerPhoneNumber: new FormControl(''),
+    customerFullName: new FormControl('', [Validators.minLength(3)]),
+    customerEmail: new FormControl('', [Validators.email]),
+    customerPhoneNumber: new FormControl('', [Validators.maxLength(10), Validators.minLength(10), Validators.pattern(/[0-9]{10}/)]),
     customerAddress: new FormGroup({
-      street: new FormControl(''),
-      city: new FormControl(''),
-      state: new FormControl(''),
-      zip: new FormControl('')
+      street: new FormControl('', [Validators.minLength(3)]),
+      city: new FormControl('', [Validators.minLength(3)]),
+      state: new FormControl('', [Validators.minLength(3)]),
+      zip: new FormControl('', [Validators.minLength(3), Validators.pattern(/[0-9]{5}/)])
     }),
     placementDate: new FormControl({ value: new Date().toLocaleDateString(), disabled: true }),
     total: new FormControl({ value: this.cart.getTotalPrice(), disabled: true }),

@@ -12,7 +12,7 @@ export class CartService {
   public bookList = new BehaviorSubject<any>([]);
   public search = new BehaviorSubject<string>("");
 
-  constructor(private apiService: ApiService) { }
+  constructor() { }
 
   getBooks(){
     return this.bookList.asObservable();

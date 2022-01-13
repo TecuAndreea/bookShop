@@ -9,7 +9,8 @@ import { ApiService } from './service/api.service';
 import { HeaderComponent } from './component/header/header.component';
 import { CartComponent } from './component/cart/cart.component';
 import { OrderDetailFormComponent } from './component/order-detail-form/order-detail-form.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterPipe } from './shared/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -17,12 +18,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     BookComponent,
     HeaderComponent,
     CartComponent,
-    OrderDetailFormComponent
+    OrderDetailFormComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
   ],
   providers: [ApiService, HttpClientModule],

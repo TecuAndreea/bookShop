@@ -13,6 +13,7 @@ export class BookComponent implements OnInit {
   public filteredBooks: any;
   public categories: any;
   public authors: any;
+  searchKey: string = "";
 
   constructor(private service: ApiService, private cartService: CartService) { }
 
@@ -33,18 +34,22 @@ export class BookComponent implements OnInit {
     this.service.getAuthors().subscribe(data => {
       this.authors = data;
     });
+
+    this.cartService.search.subscribe((val: any) => {
+      this.searchKey = val;
+    })
   }
 
-  addtocart(item: any){
+  addtocart(item: any) {
     this.cartService.addtoCart(item);
   }
 
-  filter(category:string){
+  filter(category: string) {
     this.filteredBooks = this.books
-    .filter((a:any)=>{
-      if(a.category.name == category || category==''){
-        return a;
-      }
-    })
+      .filter((a: any) => {
+        if (a.category.name == category || category == '') {
+          return a;
+        }
+      })
   }
 }
