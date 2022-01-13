@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/service/api.service';
 import { CartService } from 'src/app/service/cart.service';
 
@@ -11,27 +12,37 @@ import { CartService } from 'src/app/service/cart.service';
 export class OrderDetailFormComponent implements OnInit {
 
   orderDetails = new FormGroup({
-    customerFullName : new FormControl(''),
-    customerEmail : new FormControl(''),
-    customerPhoneNumber : new FormControl(''),
+    customerFullName: new FormControl(''),
+    customerEmail: new FormControl(''),
+    customerPhoneNumber: new FormControl(''),
     customerAddress: new FormGroup({
       street: new FormControl(''),
       city: new FormControl(''),
       state: new FormControl(''),
       zip: new FormControl('')
     }),
-    placementDate : new FormControl({value: new Date().toLocaleDateString(), disabled: true}),
-    total : new FormControl({value : this.cart.getTotalPrice(), disabled: true}),
+    placementDate: new FormControl({ value: new Date().toLocaleDateString(), disabled: true }),
+    total: new FormControl({ value: this.cart.getTotalPrice(), disabled: true }),
   });
 
-  constructor(private cart: CartService, private apiService: ApiService) { }
+  constructor(private cart: CartService, private apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
-    // TODO: Use EventEmitter with form value
-    console.warn(this.orderDetails.value);
-  }
+    var order = {
+      "customerFullName": this.orderDetails.get("customerFullName")?.value,
+      "customerEmail": this.orderDetails.get("customerEmail")?.value,
+      "customerPhoneNumber": this.orderDetails.get("customerPhoneNumber")?.value,
+      "customerAddress": this.orderDetails.get("customerAddress.state")?.value + ", " + this.orderDetails.get("customerAddress.city")?.value + ", " + this.orderDetails.get("customerAddress.street")?.value + ", " + this.orderDetails.get("customerAddress.zip")?.value,
+      "total": this.orderDetails.get("total")?.value,
+    };
 
+    this.apiService.postOrder(order, this.cart.cartItemList);
+
+    this.cart.removeAllCart();
+
+    this.router.navigate(['/book']);
+  }
 }

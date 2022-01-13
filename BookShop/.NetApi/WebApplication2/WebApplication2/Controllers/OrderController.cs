@@ -77,6 +77,7 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public async Task<ActionResult<Order>> PostOrder(Order order)
         {
+            order.PlacementDate = DateTime.Now;
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 

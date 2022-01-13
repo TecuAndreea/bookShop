@@ -13,6 +13,7 @@
 .item {
     margin: 0px 15px;
     text-align: center;
+    cursor: pointer;
 }
 
 .item a:hover {

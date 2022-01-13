@@ -22,12 +22,14 @@ export class CartService {
     this.cartItemList.push(...book);
     this.bookList.next(book);
   }
+
   addtoCart(product : any){
     this.cartItemList.push(product);
     this.bookList.next(this.cartItemList);
     this.getTotalPrice();
     console.log(this.cartItemList)
   }
+
   getTotalPrice() : number{
     let grandTotal = 0;
     this.cartItemList.map((a:any)=>{
@@ -35,16 +37,19 @@ export class CartService {
     })
     return grandTotal;
   }
-  removeCartItem(product: any){
+
+  removeCartItem(book: any){
     this.cartItemList.map((a:any, index:any)=>{
-      if(product.id=== a.id){
+      if(book.bookId === a.bookId){
         this.cartItemList.splice(index,1);
       }
     })
     this.bookList.next(this.cartItemList);
   }
+
   removeAllCart(){
     this.cartItemList = []
     this.bookList.next(this.cartItemList);
   }
+
 }
