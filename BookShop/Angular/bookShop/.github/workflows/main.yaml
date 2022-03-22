@@ -1,11 +1,5 @@
 name: CI
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: [push]
 jobs:
   lhci:
     name: Lighthouse
@@ -19,7 +13,7 @@ jobs:
       - name: npm install, build
         run: |
           npm install
-          npm run build:prod
+          npm run build
       - name: run Lighthouse CI
         run: |
           npm install -g @lhci/cli@0.4.x
