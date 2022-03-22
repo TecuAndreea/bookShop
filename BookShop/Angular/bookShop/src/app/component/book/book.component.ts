@@ -40,12 +40,12 @@ export class BookComponent implements OnInit {
     })
   }
 
-  //some comment
+  /////////////////////////////////////////////////////
   addtocart(item: any) {
     this.cartService.addtoCart(item);
   }
 
-  //some comment
+  /////////////////////////////////////////
   filter(category: string) {
     this.filteredBooks = this.books
       .filter((a: any) => {
